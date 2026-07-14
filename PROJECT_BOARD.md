@@ -8,7 +8,6 @@ This document represents the project's Scrum board for Sprint 1.
 
 ### 🗄️ 1. Product Backlog
 - [ ] Implement optional Cucumber test runners for BDD execution
-- [ ] Add CI/CD GitHub Action workflow for automated test execution on PRs
 
 ### 🎯 2. Sprint Backlog
 - [ ] Add test cases for additional authentication endpoints (Verify Login APIs)
@@ -30,6 +29,7 @@ This document represents the project's Scrum board for Sprint 1.
 - [x] Create Integration tests for POST `/searchProduct` happy/sad paths (`SearchIntegrationTest`)
 - [x] Create comprehensive `README.md` documentation
 - [x] Verify complete test suite executes successfully via Maven
+- [x] Add CI/CD GitHub Action workflow for automated test execution on PRs
 
 ### 📝 6. Notes
 

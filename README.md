@@ -1,23 +1,41 @@
-# 🚀 API Testing Mini Project - Test Automation Framework
+# 🚀 API Test Automation Framework
 
-A professional Java-based API Test Automation Framework designed to test and validate endpoints of the Automation Exercise platform: `https://automationexercise.com`.
-
----
-
-## 🛠️ Tech Stack & Dependencies
-
-*   **Java 21** - Language compiler source/target.
-*   **Maven** - Build management and dependency resolver.
-*   **REST-Assured (5.5.0)** - Fluent HTTP request and response builder.
-*   **JUnit 5 (Jupiter 5.11.3)** - Core test runner and assertions engine.
-*   **Jackson Databind (2.20.1)** - JSON parsing, object mapping, and serialization.
-*   **Mockito (5.23.0)** - Mocking framework for unit testing business logic.
+> A robust, clean, and highly maintainable test automation engine built to validate REST APIs on the **Automation Exercise** platform.
 
 ---
 
-## 🏗️ Architecture & Package Structure
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21" />
+  <img src="https://img.shields.io/badge/Maven-3.9+-blue?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
+  <img src="https://img.shields.io/badge/REST--Assured-5.5.0-green?style=for-the-badge" alt="Rest-Assured" />
+  <img src="https://img.shields.io/badge/JUnit5-5.11-red?style=for-the-badge&logo=junit5&logoColor=white" alt="JUnit 5" />
+  <img src="https://img.shields.io/badge/Mockito-5.23-blueviolet?style=for-the-badge" alt="Mockito" />
+</p>
 
-The framework is structured to keep model representations (POJOs), request client services, logic processing, and test executions cleanly separated:
+---
+
+## 📖 Table of Contents
+1. [Key Features](#-key-features)
+2. [Project Architecture](#-project-architecture)
+3. [Class Diagram](#-class-diagram)
+4. [Getting Started](#-getting-started)
+5. [CI/CD Pipeline](#-cicd-pipeline)
+6. [Collaboration & Hand-over](#-collaboration--hand-over)
+7. [Meet the Collaborators](#-meet-the-collaborators)
+
+---
+
+## ✨ Key Features
+
+*   **POJO Response Mapping**: Uses Jackson ObjectMapper for precise serialization and deserialization of API responses.
+*   **Decoupled ApiClient**: Isolates HTTP requests and RestAssured settings from the assertions layer.
+*   **Automated Content-Type Parsing**: Registers a custom global parser to handle standard HTML-based payloads safely.
+*   **Mockito Mocking**: Runs fast offline unit tests for business logic without firing real HTTP requests.
+*   **Comprehensive Coverage**: Tests multiple endpoints (`/productsList`, `/brandsList`, `/searchProduct`) under both happy and sad path scenarios.
+
+---
+
+## 🏗️ Project Architecture
 
 ```text
 api_testing_project
@@ -147,36 +165,63 @@ classDiagram
 
 ---
 
-## ⚙️ How to Build and Run the Tests
+## 🚀 Getting Started
 
-### Prerequisite
-Ensure you have **JDK 21** installed and configured.
+### Prerequisites
+Make sure **JDK 21** and **Maven** are installed on your machine.
 
-### Execute the Test Suite
-From the root of the project, run the following Maven command:
+### Run Tests
+To download dependencies, compile codebase, and run the test suite:
 ```bash
 mvn clean test
 ```
 
-This will automatically:
-1. Clean target directories.
-2. Fetch and resolve dependencies.
-3. Compile all source and test classes.
-4. Execute both **Unit Tests** (using Mockito for offline processing logic) and **Integration Tests** (using RestAssured to hit live API endpoints).
+---
+
+## 🔄 CI/CD Pipeline
+
+The framework has an integrated GitHub Action workflow configured in `.github/workflows/maven.yml`. On every push and Pull Request to `main` or `dev`, it:
+1. Provisions an Ubuntu environment.
+2. Sets up JDK 21.
+3. Caches Maven packages for fast builds.
+4. Executes the full test suite (`mvn clean test`).
 
 ---
 
-## 🤝 Collaboration & Project Hand-over Instructions
+## 🤝 Collaboration & Hand-over
 
-If a new team is taking over this project, please follow these guidelines to maintain standard code quality and consistency:
-
+When extending this framework or introducing updates:
 1.  **Branching Strategy**:
-    *   Do **NOT** commit directly to the `main` branch.
-    *   Create feature branches named `feature/description` or `bugfix/issue` from the `dev` branch.
-    *   Merge into `dev` via Pull Requests, and ensure all unit/integration tests pass.
+    *   Create branches off of the `dev` branch.
+    *   Name features using `feature/description` pattern.
+    *   Integrate to `main` via reviewed Pull Requests.
 2.  **POJO Integrity**:
-    *   Any endpoint changes should be reflected in the `pojos` package classes. Use `@JsonProperty` annotations to map JSON keys cleanly.
-3.  **Client Separation**:
-    *   Keep HTTP setup, base URLs, headers, and endpoints within `ApiClient.java`. Other services or tests must only invoke client methods.
-4.  **Mocking Logic**:
-    *   When adding helpers or service classes that interact with the network, always write unit tests in the `unit` package, mocking the `ApiClient` using Mockito to guarantee fast offline test execution.
+    *   Reflect any endpoint updates in the `pojos` package.
+3.  **Offline Logic Testing**:
+    *   Write Mockito unit tests in the `unit` package for any logic processing to avoid relying on external resources during fast test runs.
+
+---
+
+## 👥 Meet the Collaborators
+
+We are a group of 7 automation and quality assurance experts working together in a Scrum sprint to design, build, and deliver this project.
+
+<br>
+
+<p align="center">
+  <a href="https://github.com/oanzia99">
+    <img src="https://img.shields.io/badge/OAN%20ZIA-Project%20Lead%20%2F%20Architect-blue?style=for-the-badge&logo=github&logoColor=white" alt="Oan Zia" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Matthew%20Corthorne-CI%2FCD%20%26%20DevOps%20Lead-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Piravien-Test%20Case%20Designer-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Zeenia%20Haji-Senior%20QA%20Engineer-green?style=flat-square" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Aerhan%20Srirangan-API%20Integration%20Specialist-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Salah%20Ali-Scrum%20Master-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Kamaron%20Daley-Automation%20Developer-green?style=flat-square" />
+</p>

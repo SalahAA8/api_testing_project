@@ -1,4 +1,4 @@
-package com.sparta.api_testing_project;
+package com.sparta.endpointtesting;
 
 import com.sparta.endpointtesting.pojoconfig.pojos.BrandList;
 import com.sparta.endpointtesting.pojoconfig.pojos.BrandsItem;

@@ -46,8 +46,6 @@ public class GetBrandTest {
         }
     }
 
-
-
     @Test
     @DisplayName("PUT request to brands endpoint returns 405 response code")
     void testPutBrandsReturns405(){
@@ -56,7 +54,5 @@ public class GetBrandTest {
         MatcherAssert.assertThat(putResponse.getStatusCode(), Matchers.is(200));
         MatcherAssert.assertThat(putResponse.jsonPath().getInt("responseCode"), Matchers.is(405));
     }
-
-
 
 }

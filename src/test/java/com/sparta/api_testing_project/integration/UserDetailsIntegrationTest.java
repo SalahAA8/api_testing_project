@@ -1,4 +1,4 @@
-package com.sparta.api_testing_project.integration;
+package com.sparta.endpointtesting.pojoconfig;
 
 import com.sparta.api_testing_project.client.ApiClient;
 import com.sparta.endpointtesting.pojoconfig.pojos.UserDetailsResponse;

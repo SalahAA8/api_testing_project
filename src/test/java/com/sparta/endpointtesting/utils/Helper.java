@@ -47,6 +47,12 @@ public class Helper {
                 )).build();
     }
 
+    public static RequestSpecification verifyLoginRequestSpecifyFormParams(Map<String, String> formParams) {
+        return getBaseSpecBuilder(VERIFY_LOGIN_PATH)
+                .addFormParams(formParams)
+                .build();
+    }
+
     public static RequestSpecification createAccountRequest(String email, String password) {
         return getBaseSpecBuilder(CREATE_ACCOUNT_PATH)
                 .addFormParams(Map.of(
@@ -54,14 +60,14 @@ public class Helper {
                         "password", password
                 )).build();
     }
-// Don't know parameters for these will update later
-/*    public static RequestSpecification deleteAccountRequest(String email, String password) {
+
+    public static RequestSpecification deleteAccountRequest(String email, String password) {
         return getBaseSpecBuilder(DELETE_ACCOUNT_PATH)
                 .addFormParams(Map.of(
                         "email", email,
                         "password", password
                 )).build();
-    }*/
+    }
 
     public static RequestSpecification updateAccountRequest(String name, String email, String password,
                                                             String firstName, String lastName) {
@@ -126,8 +132,49 @@ public class Helper {
 
     }
 
-    public static Response putUpdateAccountRequest(String name, String email, String password,
-                                                   String firstName, String lastName) {
+    public static RequestSpecification createAccountRequest(String name, String email, String password) {
+        return getBaseSpecBuilder(CREATE_ACCOUNT_PATH)
+                .addFormParam("name", name)
+                .addFormParam("email", email)
+                .addFormParam("password", password)
+                .addFormParam("title", "Mr")
+                .addFormParam("birth_date", "10")
+                .addFormParam("birth_month", "5")
+                .addFormParam("birth_year", "1995")
+                .addFormParam("firstname", "Test")
+                .addFormParam("lastname", "User")
+                .addFormParam("company", "Sparta")
+                .addFormParam("address1", "1 Test Street")
+                .addFormParam("address2", "London")
+                .addFormParam("country", "United Kingdom")
+                .addFormParam("zipcode", "SW1A 1AA")
+                .addFormParam("state", "London")
+                .addFormParam("city", "London")
+                .addFormParam("mobile_number", "07123456789")
+                .build();
+    }
+
+    public static RequestSpecification createAccountWithoutEmailRequest(String name, String password) {
+        return getBaseSpecBuilder(CREATE_ACCOUNT_PATH)
+                .addFormParam("name", name)
+                .addFormParam("password", password)
+                .addFormParam("title", "Mr")
+                .addFormParam("birth_date", "10")
+                .addFormParam("birth_month", "5")
+                .addFormParam("birth_year", "1995")
+                .addFormParam("firstname", "Test")
+                .addFormParam("lastname", "User")
+                .addFormParam("company", "Sparta")
+                .addFormParam("address1", "1 Test Street")
+                .addFormParam("address2", "London")
+                .addFormParam("country", "United Kingdom")
+                .addFormParam("zipcode", "SW1A 1AA")
+                .addFormParam("state", "London")
+                .addFormParam("city", "London")
+                .addFormParam("mobile_number", "07123456789")
+                .build();
+    }
+    public static Response putUpdateAccountRequest(String name, String email, String password, String firstName, String lastName) {
         return RestAssured
                 .given()
                 .spec(updateAccountRequest(name, email, password, firstName, lastName))
@@ -137,4 +184,27 @@ public class Helper {
                 .log().all()
                 .extract().response();
     }
+
+    public static Response postVerifyLogin(String email, String password) {
+        RestAssured.registerParser("text/html", Parser.JSON);
+        return response = RestAssured
+                .given()
+                .spec(verifyLoginRequest(email, password))
+                .when()
+                .post()
+                .then()
+                .extract().response();
+    }
+
+    public static Response postVerifyLoginSpecifyParams(Map<String, String> formParams) {
+        RestAssured.registerParser("text/html", Parser.JSON);
+        return response = RestAssured
+                .given()
+                .spec(verifyLoginRequestSpecifyFormParams(formParams))
+                .when()
+                .post()
+                .then()
+                .extract().response();
+    }
 }
+

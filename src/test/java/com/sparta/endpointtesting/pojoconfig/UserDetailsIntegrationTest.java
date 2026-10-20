@@ -13,7 +13,7 @@ public class UserDetailsIntegrationTest {
 
     @BeforeAll
     static void setup() {
-        apiClient = new ApiClient();
+        apiClient = new Helper();
     }
 
     @Test

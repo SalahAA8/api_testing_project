@@ -33,6 +33,12 @@ public class UpdateUserAccountTest {
     }
 
     @Test
+    @DisplayName("Check status code after updating User last name")
+    void checkStatusCodeAfterUpdatingUserLastName2() {
+        MatcherAssert.assertThat(updateHappyPath.getStatusCode(), Matchers.not(404));
+    }
+
+    @Test
     @DisplayName("Check if the correct message is returned after updating User last name")
     void checkCorrectMessageAfterUpdatingUserLastName() {
         MatcherAssert.assertThat(updateHappyPath.jsonPath().getString("message"), Matchers.is("User updated!"));
